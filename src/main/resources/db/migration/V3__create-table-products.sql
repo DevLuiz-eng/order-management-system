@@ -1,7 +1,7 @@
 CREATE TABLE products (
 
     id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    price NUMERIC(0,2) NOT NULL CHECK(price > 0),
+    price NUMERIC(10,2) NOT NULL CHECK(price > 0),
     name VARCHAR(100) NOT NULL,
     stock INTEGER NOT NULL
 
