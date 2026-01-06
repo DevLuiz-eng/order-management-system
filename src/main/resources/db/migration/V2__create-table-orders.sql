@@ -1,0 +1,9 @@
+CREATE TABLE orders (
+
+    id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    user_id BIGINT NOT NULL,
+    order_status VARCHAR(50) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+)
