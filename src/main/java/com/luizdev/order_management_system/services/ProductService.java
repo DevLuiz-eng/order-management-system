@@ -57,7 +57,7 @@ public class ProductService {
 
         product.setPrice(requestDTO.price());
         product.setStock(requestDTO.stock());
-        product.setPrice(requestDTO.price());
+        product.setName(requestDTO.name());
 
         
         return returnResponse(product);
