@@ -2,12 +2,15 @@ package com.luizdev.order_management_system.services;
 
 import com.luizdev.order_management_system.DTO.request.ProductRequestDTO;
 import com.luizdev.order_management_system.DTO.response.ProductResponseDTO;
+import com.luizdev.order_management_system.DTO.response.UserResponseDTO;
 import com.luizdev.order_management_system.domain.Product;
 import com.luizdev.order_management_system.exceptions.NotFoundProductException;
 import com.luizdev.order_management_system.repositories.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.Getter;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 
@@ -34,6 +37,18 @@ public class ProductService {
     public ProductResponseDTO getProduct(Long id) {
         var product = searchProduct(id);
         return returnResponse(product);
+    }
+
+    public List<ProductResponseDTO> getAllProducts() {
+        return repository.
+                findAll().
+                stream().
+                map(p -> new ProductResponseDTO(
+                        p.getId(),
+                        p.getName(),
+                        p.getPrice(),
+                        p.getStock())).
+                toList();
     }
 
     @Transactional
