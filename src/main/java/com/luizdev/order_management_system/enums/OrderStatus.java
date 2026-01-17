@@ -2,7 +2,7 @@ package com.luizdev.order_management_system.enums;
 
 public enum OrderStatus {
 
-    CREATE,
+    CREATED,
     PAID,
     SHIPPED,
     DELIVERED,
