@@ -123,5 +123,17 @@ public class OrderService {
 
     }
 
+    public List<OrderResponseDTO> getAllOrders() {
+        return orderRepository.
+                findAll().
+                stream().
+                map(o -> new OrderResponseDTO(
+                        o.getId(),
+                        o.getOrderItem(),
+                        o.getUser().getId(),
+                        o.getOrderStatus(),
+                        o.getDescription())).toList();
+    }
+
 
 }
