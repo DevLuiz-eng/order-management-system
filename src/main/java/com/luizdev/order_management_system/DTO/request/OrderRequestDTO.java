@@ -6,5 +6,5 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public record OrderRequestDTO(@NotEmpty List<OrderItem> items, @NotNull Long userId, @NotNull String description) {
+public record OrderRequestDTO(@NotEmpty List<OrderItemRequestDTO> items, @NotNull Long userId, @NotNull String description) {
 }
