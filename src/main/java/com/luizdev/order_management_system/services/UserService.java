@@ -78,19 +78,10 @@ public class UserService {
         repository.deleteAll();
     }
 
-    public void associateOrdersToUsers(Long userId, Order... orders) {
-        User user = repository.
-                findById(userId).
-                orElseThrow(() -> new NotFoundUserException("User was not found."));
 
-        user.getOrders().addAll(List.of(orders));
+    public User findUserForOrder(Long id) {
+        return repository.findById(id).orElseThrow(() -> new NotFoundUserException("User was not found."));
 
-        repository.save(user);
-
-    }
-
-    public UserRepository getRepository() {
-        return this.repository;
     }
 
 }

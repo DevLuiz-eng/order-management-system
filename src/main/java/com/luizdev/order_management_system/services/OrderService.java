@@ -60,17 +60,14 @@ public class OrderService {
     public OrderResponseDTO createOrder(OrderRequestDTO request) {
         Order order = new Order();
 
-        userService.associateOrdersToUsers(request.userId(), order);
         order.setOrderStatus(OrderStatus.CREATED);
-
         for (OrderItemRequestDTO itemRequestDTO : request.items()) {
             order.getOrderItem().add(createOrderItem(itemRequestDTO, order));
         }
 
-        order.setUser(userService.
-                getRepository().
-                findById(request.userId()).
-                orElseThrow(() -> new NotFoundUserException("User was not found.")));
+        var user = userService.findUserForOrder(request.userId());
+        order.setUser(user);
+        user.getOrders().add(order);
         order.setDescription(request.description());
 
 
