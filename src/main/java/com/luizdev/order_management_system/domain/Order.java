@@ -1,6 +1,7 @@
 package com.luizdev.order_management_system.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luizdev.order_management_system.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     @Enumerated(EnumType.STRING)
